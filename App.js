@@ -1,19 +1,25 @@
 import { StyleSheet, Text, View } from 'react-native';
-// import { StatusBar } from 'expo-status-bar';
-// at the top
-
 import React from 'react';
-import MainTabBar from './navigation/main-tab-bar';
+//tell React that we will implement a navigator
+import { NavigationContainer } from "@react-navigation/native";
+//create a stack navigator
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MainTabNavigator from './navigation/MainTabNavigator';
 
 // disable really annoying in app warnings
 console.disableYellowBox = true;
 
+const RootStack = createNativeStackNavigator();
+
 const App = (props) => {
-  return <MainTabBar />;
+  return (
+    <NavigationContainer>
+      <RootStack.Navigator>
+        <RootStack.Screen name="Main" component={MainTabNavigator} />
+      </RootStack.Navigator>
+    </NavigationContainer>
+  );
 };
-
-
-export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -24,3 +30,4 @@ const styles = StyleSheet.create({
   },
 });
 
+export default App;

@@ -1,35 +1,21 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/FontAwesome';
-import HomeScreen from '../src/screens/home';
+import HomeStack from './HomeStackNavigator';
 import ExploreScreen from '../src/screens/explore';
 import ProfileScreen from '../src/screens/profile';
 
-const HomeTab = (props) => {
-  return <HomeScreen/>
-};
+const MainTab = createBottomTabNavigator();
 
-const ExploreTab = (props) => {
-  return <ExploreScreen />
-}
-
-const ProfileTab = (props) => {
-  return <ProfileScreen />
-}
-
-const Tab = createBottomTabNavigator();
-
-const MainTabBar = () => {
+export default MainTabNavigator = () => {
     return (
-      <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName="HomeScreen"
+        <MainTab.Navigator
+          initialRouteName="Home"
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused }) => {
               let iconName;
   
-              if (route.name === 'HomeScreen') {
+              if (route.name === 'Home') {
                 iconName = 'home';
               } else if (route.name == 'Search') {
                 iconName = 'search';
@@ -41,12 +27,10 @@ const MainTabBar = () => {
             },
           })}
         >
-          <Tab.Screen name="HomeScreen" component={HomeTab} />
-          <Tab.Screen name="Search" component={ExploreTab} />
-          <Tab.Screen name="Profile" component={ProfileTab} />
-        </Tab.Navigator>
-      </NavigationContainer>
+          <MainTab.Screen name="Home" component={HomeStack} options={{ headerShown: false }}/>
+          <MainTab.Screen name="Search" component={ExploreScreen} />
+          <MainTab.Screen name="Profile" component={ProfileScreen} />
+        </MainTab.Navigator>
     );
   };
   
-export default MainTabBar;
