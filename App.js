@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 // at the top
 
 import React from 'react';
-import MainTabBar from './navigation/main_tab_bar';
+import MainTabBar from './navigation/main-tab-bar';
 
 // disable really annoying in app warnings
 console.disableYellowBox = true;

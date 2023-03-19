@@ -1,21 +1,22 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/FontAwesome';
-import Home from '../components/home';
+import HomeScreen from '../src/screens/home';
+import ExploreScreen from '../src/screens/explore';
+import ProfileScreen from '../src/screens/profile';
 
 const HomeTab = (props) => {
-  return <Home/>
+  return <HomeScreen/>
 };
 
-const NewSeedTab = (props) => {
-  return <View style={{ flex: 1, justifyContent: 'center' }}><Text>New Seed</Text></View>;
-};
+const ExploreTab = (props) => {
+  return <ExploreScreen />
+}
 
 const ProfileTab = (props) => {
-    return <View style={{ flex: 1, justifyContent: 'center' }}><Text>Profile</Text></View>;
-};
+  return <ProfileScreen />
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -23,15 +24,15 @@ const MainTabBar = () => {
     return (
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="Home"
+          initialRouteName="HomeScreen"
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused }) => {
               let iconName;
   
-              if (route.name === 'Home') {
+              if (route.name === 'HomeScreen') {
                 iconName = 'home';
-              } else if (route.name == 'New Seed') {
-                iconName = 'plus-circle';
+              } else if (route.name == 'Search') {
+                iconName = 'search';
               } else if (route.name == 'Profile') {
                 iconName = 'user';
               }
@@ -40,8 +41,8 @@ const MainTabBar = () => {
             },
           })}
         >
-          <Tab.Screen name="Home" component={HomeTab} />
-          <Tab.Screen name="New Seed" component={NewSeedTab} />
+          <Tab.Screen name="HomeScreen" component={HomeTab} />
+          <Tab.Screen name="Search" component={ExploreTab} />
           <Tab.Screen name="Profile" component={ProfileTab} />
         </Tab.Navigator>
       </NavigationContainer>
