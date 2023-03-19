@@ -22,9 +22,6 @@ export default HomeScreen = (props) => {
   return (
     <View style={styles.container}>
       {displayCategories()}
-      <Text>
-        This is going to be the homefeed.
-      </Text>
     </View>
   );
 };
