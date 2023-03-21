@@ -22,7 +22,7 @@ const displayCategories = () => {
     <ScrollView horizontal={true} style={styles.categoryList}>
       {CATEGORIES.map((category) => {
           return (
-            <CategoryItem category={category} key={category}/>
+            <CategoryItem category={category.value} key={category.key}/>
           )
         })
       }
