@@ -5,12 +5,13 @@ import { combineReducers } from 'redux';
 // import ErrorReducer from './error-reducer';
 // import AuthReducer from './auth-reducer';
 // import UserReducer from './user-reducer';
+import PostReducer from './post-reducer';
 
 const rootReducer = combineReducers({
 //   errors: ErrorReducer,
 //   auth: AuthReducer,
   post: PostReducer,
-  user: UserReducer,
+  // user: UserReducer,
 });
 
 export default rootReducer;

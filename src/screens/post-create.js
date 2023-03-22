@@ -3,38 +3,47 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-nativ
 import { Ionicons } from '@expo/vector-icons';
 import CATEGORIES from '../constants/Categories';
 import { MultipleSelectList } from 'react-native-dropdown-select-list';
+import { createPost } from '../hooks/post/postSlice';
+import { useDispatch } from 'react-redux';
 
 export default CreatePostScreen = (props) => {
 
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [postTitle, setPostTitle] = useState('');
     const [postBody, setPostBody] = useState('');
+    const dispatch = useDispatch();
 
-    const onPressDismiss = (props) => {
+    const onPressDismiss = () => {
         console.log('clicked dismiss');
         props.navigation.goBack();
     }
     
-    const onPressPost = (props) => {
+    const onPressPost = () => {
         console.log('clicked post');
         console.log('selected categories: ' + selectedCategories);
         console.log('post title: ' + postTitle);
         console.log('post body: ' + postBody);
+        dispatch(createPost({title: postTitle, body: postBody, categories: selectedCategories}))
         props.navigation.navigate("HomeScreen");
         // TODO: Call action to create post and send to backend
     }
 
-    return (
-        <View style={styles.createPostContainer}>
+    const displayPostHeader = () => {
+        return (
             <View style={styles.createPostHeader}>
-                <TouchableOpacity onPress={() => onPressDismiss(props)}>
+                <TouchableOpacity onPress={onPressDismiss}>
                     <Ionicons name="close-outline" size={32} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => onPressPost(props)} style={styles.createPostButton}>
+                <TouchableOpacity onPress={onPressPost} style={styles.createPostButton}>
                     <Text style={styles.createPostButtonText}>Post</Text>
                 </TouchableOpacity>
             </View>
-            {/* TODO: Convert placeholder profile to userprofile photo */}
+        );
+    }
+
+    const displayPostAuthorContainer = () => {
+        // TODO: Fix dropdown position to absolute so that it overlays the textinputs
+        return (
             <View style={styles.createPostAuthorContainer}>
                 <Text style={styles.createPostAuthor}>
                     <Ionicons name="person-circle-outline" size={50} />
@@ -48,10 +57,17 @@ export default CreatePostScreen = (props) => {
                         placeholder='Select Categories'
                     />
                 </View>
-
             </View>
+        );
+    }
+
+    return (
+        <View style={styles.createPostContainer}>
+            {displayPostHeader()}
+            {/* TODO: Convert placeholder profile to userprofile photo */}
+            {displayPostAuthorContainer()}
             <TextInput 
-                placeholder="Insert title here"
+                placeholder="Title"
                 onChangeText={(text) => {setPostTitle(text)}}
                 value={postTitle}
                 borderBottomWidth={1}
@@ -60,7 +76,7 @@ export default CreatePostScreen = (props) => {
                 margin={10}
             />
             <TextInput 
-                placeholder="Insert description here"
+                placeholder="What's brewing?"
                 onChangeText={(text) => {setPostBody(text)}}
                 value={postBody}
                 borderBottomWidth={1}
@@ -72,7 +88,6 @@ export default CreatePostScreen = (props) => {
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     createPostContainer: {

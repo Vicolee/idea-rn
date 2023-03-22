@@ -1,9 +1,12 @@
 import axios from 'axios';
+import posts from '../../assets/localStorage';
 
 export const ROOT_URL = 'http://localhost:9090/api';
 
 export const ActionTypes = {
     FETCH_POST: 'FETCH_POST',
+    FETCH_POSTS: 'FETCH_POSTS',
+    CREATE_POST: 'CREATE_POST',
     UPDATE_POST: 'UPDATE_POST',
     FETCH_PROFILE: 'FETCH_PROFILE',
     UPDATE_PROFILE: 'UPDATE_PROFILE',
@@ -15,6 +18,48 @@ export const ActionTypes = {
 };
 
 // TODO: Add post actions
+export function createPost(post) {
+  posts.add(post);
+  console.log('all posts after adding: ' + posts);
+  // return (dispatch) => {
+  //   // post is an object with title, content, and categories
+  //   axios.post(`${ROOT_URL}/posts/create`, post, { headers: { authorization: localStorage.getItem('token') } })
+  //     .then((response) => {
+  //       dispatch({ type: ActionTypes.CREATE_POST, payload: response.data });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+}
+
+export function fetchPost(postId) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/posts/${postId}`, { headers: { authorization: localStorage.getItem('token') } })
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
+        dispatch({ type: ActionTypes.ERROR_CLEAR, payload: '' });
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch({ type: ActionTypes.ERROR_SET, payload: error });
+      });
+  };
+}
+
+export function fetchPosts() {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/posts`, { headers: { authorization: localStorage.getItem('token') } })
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_POSTS, payload: response.data });
+        dispatch({ type: ActionTypes.ERROR_CLEAR, payload: '' });
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch({ type: ActionTypes.ERROR_SET, payload: error });
+      });
+  };
+}
 
 export function authError(error) {
     return {
