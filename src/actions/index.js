@@ -1,5 +1,5 @@
 import axios from 'axios';
-import posts from '../../assets/localStorage';
+import posts from '../localStorage';
 
 export const ROOT_URL = 'http://localhost:9090/api';
 

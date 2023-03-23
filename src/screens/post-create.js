@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-nativ
 import { Ionicons } from '@expo/vector-icons';
 import CATEGORIES from '../constants/Categories';
 import { MultipleSelectList } from 'react-native-dropdown-select-list';
-import { createPost } from '../hooks/post/postSlice';
-import { useDispatch } from 'react-redux';
+import { createPost, selectAllPosts } from '../redux-hooks/post/postSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default CreatePostScreen = (props) => {
 
@@ -12,6 +12,7 @@ export default CreatePostScreen = (props) => {
     const [postTitle, setPostTitle] = useState('');
     const [postBody, setPostBody] = useState('');
     const dispatch = useDispatch();
+    const allPosts = useSelector(selectAllPosts);
 
     const onPressDismiss = () => {
         console.log('clicked dismiss');
@@ -23,9 +24,8 @@ export default CreatePostScreen = (props) => {
         console.log('selected categories: ' + selectedCategories);
         console.log('post title: ' + postTitle);
         console.log('post body: ' + postBody);
-        dispatch(createPost({title: postTitle, body: postBody, categories: selectedCategories}))
+        dispatch(createPost({author: "placeholder", title: postTitle, body: postBody, categories: selectedCategories, likedBy: [], comments: []}))
         props.navigation.navigate("HomeScreen");
-        // TODO: Call action to create post and send to backend
     }
 
     const displayPostHeader = () => {

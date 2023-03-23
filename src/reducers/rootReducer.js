@@ -5,12 +5,12 @@ import { combineReducers } from 'redux';
 // import ErrorReducer from './error-reducer';
 // import AuthReducer from './auth-reducer';
 // import UserReducer from './user-reducer';
-import PostReducer from './post-reducer';
+import postReducer from '../redux-hooks/post/postSlice';
 
 const rootReducer = combineReducers({
 //   errors: ErrorReducer,
 //   auth: AuthReducer,
-  post: PostReducer,
+  post: postReducer,
   // user: UserReducer,
 });
 
