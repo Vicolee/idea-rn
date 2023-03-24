@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { StyleSheet, View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
 import { useSelector } from 'react-redux'
 import { selectAllPosts } from '../redux-hooks/post/postSlice';
 import CategoryItem from '../components/CategoryItem';
@@ -10,6 +11,8 @@ import Post from '../components/Post';
 const HomeScreen = (props) => {
 
   const posts = useSelector(selectAllPosts);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
   
   const displayCategories = () => {
     // create a list of view of categories
@@ -18,12 +21,21 @@ const HomeScreen = (props) => {
       <ScrollView horizontal={true} style={styles.categoryList}>
         {CATEGORIES.map((category) => {
             return (
-              <CategoryItem category={category.value} key={category.key}/>
+              <CategoryItem 
+                category={category}
+                onPress={onPressCategory}
+                isSelected={selectedCategory === category.key}
+              />
             )
           })
         }
       </ScrollView>
     );
+  }
+
+  const onPressCategory = (categoryKey) => {
+    setSelectedCategory(categoryKey);
+    console.log('clicked category key: ' + selectedCategory)
   }
   
   const onPressCreate = () => {
@@ -34,9 +46,9 @@ const HomeScreen = (props) => {
   const displayAllPosts = () => {
     return (
       <ScrollView>
-        {posts.map((post) => {
+        {posts.map((post, idx) => {
           return (
-            <Post post={post}/>
+            <Post post={post} key={idx}/>
           )
         })}
       </ScrollView>

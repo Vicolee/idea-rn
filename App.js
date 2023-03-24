@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MainTabNavigator from './navigation/MainTabNavigator';
 import { Provider } from 'react-redux'
 import store from './src/store'
+import 'expo-dev-menu';
 
 // disable really annoying in app warnings
 console.disableYellowBox = true;

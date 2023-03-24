@@ -3,16 +3,19 @@ import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 export default CategoryItem = (props) => {
     return (
         // view for different categories
-        <TouchableOpacity onPress={() => {onPressCategory(props)}} style={styles.categoryButton}>
-            <Text>{props.category}</Text>
+        <TouchableOpacity 
+            onPress={() => props.onPress(props.category.key)}
+            style={[
+                styles.categoryButton,
+                props.isSelected ? styles.selectedCategory : null
+            ]}
+            >
+            <Text>{props.category.value}</Text>
         </TouchableOpacity> 
     )
 }
 
-const onPressCategory = (props) => {
-    console.log('clicked category: ' + props.category)
-    // TODO: update category that user is looking at and store in backend
-}
+
 
 const styles = StyleSheet.create({
     categoryButton: {
@@ -24,5 +27,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 30,
         margin: 3,
-        },
+    },
+    selectedCategory: {
+        backgroundColor: '#4da379',
+    }
 });
