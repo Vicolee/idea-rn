@@ -5,19 +5,19 @@ export const postSlice = createSlice({
   initialState: {
     all: [
         {
-            author: "test author 1",
+            author: "test1@gmail.com",
             title: "Title test 1",
             body: "Body blah blah",
             likedBy: [1, 2, 3],
-            categories: ["Blockchain", "AI"],
+            categories: [3, 5],
             comments: [1, 2, 10],
         },
         {
-            author: "test author 2",
+            author: "test1@gmail.com",
             title: "Title test 2",
             body: "Body blah blah 2",
             likedBy: [1, 2, 3],
-            categories: ["Healthcare", "AI"],
+            categories: [0, 2],
             comments: [1, 2, 11],
         },
     ],

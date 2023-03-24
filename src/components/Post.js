@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import CommentButton from "./CommentButton";
 import LikeButton from "./LikeButton";
+import CATEGORIES from "../constants/Categories";
 
 export default Post = (props) => {
 
@@ -9,13 +10,26 @@ export default Post = (props) => {
         return (
             <View>
                 <Text>{props.post.title}</Text>
-                {/* <View>
-                    <Text>{props.user}</Text>
-                    <Text>{props.timeAgo}</Text>
-                    {displayCategories()}
-                </View> */}
+                <View>
+                    <Text>{props.post.author}</Text>
+                    {/* <Text>{props.post.timeAgo}</Text> */}
+                    {displayPostCategories()}
+                </View>
             </View>
         );
+    }
+
+    const displayPostCategories = () => {
+        return (
+            <View>
+                {props.post.categories.map((idx) => {
+                    console.log(CATEGORIES[idx].value)
+                    return (
+                        <Text>{CATEGORIES[idx].value}</Text>
+                    );
+                })}
+            </View>
+        )
     }
     
     const displayPostBody = () => {

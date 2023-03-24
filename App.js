@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React from 'react';
 //tell React that we will implement a navigator
 import { NavigationContainer } from "@react-navigation/native";
@@ -17,11 +17,13 @@ const RootStack = createNativeStackNavigator();
 const App = (props) => {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <RootStack.Navigator>
-          <RootStack.Screen name="Main" component={MainTabNavigator} />
-        </RootStack.Navigator>
-      </NavigationContainer>
+      <View style={styles.container}>
+        <NavigationContainer>
+          <RootStack.Navigator>
+            <RootStack.Screen name="Main" component={MainTabNavigator} />
+          </RootStack.Navigator>
+        </NavigationContainer>
+      </View>
     </Provider>
 
   );
@@ -31,8 +33,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 

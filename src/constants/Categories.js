@@ -1,5 +1,5 @@
 export default CATEGORIES = [
-    {key: '0', value: 'All'},
+    {key: '0', value: 'Consumer Tech'},
     {key: '1', value: 'Fintech'},
     {key: '2', value: 'Healthcare'},
     {key: '3', value: 'Blockchain'},

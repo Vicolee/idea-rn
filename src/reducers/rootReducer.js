@@ -6,12 +6,13 @@ import { combineReducers } from 'redux';
 // import AuthReducer from './auth-reducer';
 // import UserReducer from './user-reducer';
 import postReducer from '../redux-hooks/post/postSlice';
+import userReducer from '../redux-hooks/user/userSlice';
 
 const rootReducer = combineReducers({
 //   errors: ErrorReducer,
 //   auth: AuthReducer,
   post: postReducer,
-  // user: UserReducer,
+  user: userReducer,
 });
 
 export default rootReducer;

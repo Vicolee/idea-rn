@@ -5,6 +5,7 @@ import CATEGORIES from '../constants/Categories';
 import { MultipleSelectList } from 'react-native-dropdown-select-list';
 import { createPost, selectAllPosts } from '../redux-hooks/post/postSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Dropdown from '../components/Dropdown';
 
 export default CreatePostScreen = (props) => {
 
@@ -24,7 +25,8 @@ export default CreatePostScreen = (props) => {
         console.log('selected categories: ' + selectedCategories);
         console.log('post title: ' + postTitle);
         console.log('post body: ' + postBody);
-        dispatch(createPost({author: "placeholder", title: postTitle, body: postBody, categories: selectedCategories, likedBy: [], comments: []}))
+        // TODO: get current user signed in and set as author
+        dispatch(createPost({author: "test2@gmail.com", title: postTitle, body: postBody, categories: selectedCategories, likedBy: [], comments: []}))
         props.navigation.navigate("HomeScreen");
     }
 
@@ -48,15 +50,7 @@ export default CreatePostScreen = (props) => {
                 <Text style={styles.createPostAuthor}>
                     <Ionicons name="person-circle-outline" size={50} />
                 </Text>
-                <View style={styles.createPostDropdown}>
-                    <MultipleSelectList
-                        setSelected={(category) => setSelectedCategories(category)}
-                        data={CATEGORIES}
-                        save="value"
-                        label="Categories"
-                        placeholder='Select Categories'
-                    />
-                </View>
+                <Dropdown options={CATEGORIES} onSelect={setSelectedCategories} />
             </View>
         );
     }
@@ -92,7 +86,9 @@ export default CreatePostScreen = (props) => {
 const styles = StyleSheet.create({
     createPostContainer: {
         display: 'flex',
+        flex: 1,
         flexDirection: 'column',
+        backgroundColor: 'white',
     },
     createPostHeader: {
         display: 'flex',

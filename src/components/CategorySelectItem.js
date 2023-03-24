@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-export default CategoryItem = (props) => {
+export default CategorySelectItem = (props) => {
     return (
         // view for different categories
         <TouchableOpacity 
