@@ -11,6 +11,7 @@ export const postSlice = createSlice({
             likedBy: [1, 2, 3],
             categories: [3, 5],
             comments: [1, 2, 10],
+            createdAt: new Date('2022-01-15T09:30:00.000Z'),
         },
         {
             author: "test1@gmail.com",
@@ -19,6 +20,7 @@ export const postSlice = createSlice({
             likedBy: [1, 2, 3],
             categories: [0, 2],
             comments: [1, 2, 11],
+            createdAt: new Date(),
         },
     ],
     curr: {},

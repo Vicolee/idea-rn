@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text } from 'react-native';
 
-export default CategoryLabelItem = (props) => {
+export default CategoryTag = (props) => {
     return (
         <View style={styles.categoryLabel}>
             <Text style={styles.categoryText}>{props.category}</Text>

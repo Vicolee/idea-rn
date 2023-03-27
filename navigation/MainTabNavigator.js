@@ -2,8 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/FontAwesome';
 import HomeStack from './HomeStackNavigator';
-import ExploreScreen from '../src/screens/explore';
-import ProfileScreen from '../src/screens/profile';
+import ExploreScreen from '../src/screens/Explore';
+import ProfileScreen from '../src/screens/Profile';
 
 const MainTab = createBottomTabNavigator();
 

@@ -22,6 +22,7 @@
     "expo-checkbox": "~2.2.0",
     "expo-dev-menu": "^2.1.4",
     "expo-status-bar": "~1.4.0",
+    "moment": "^2.29.4",
     "react": "^18.0.0",
     "react-native": "0.69.6",
     "react-native-dropdown-select-list": "^2.0.4",

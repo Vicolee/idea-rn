@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import CheckBox from 'expo-checkbox';
-import CategoryLabelItem from './CategoryLabelItem';
+import CategoryTag from './CategoryTag';
 
 const Dropdown = ({ options, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +43,7 @@ const Dropdown = ({ options, onSelect }) => {
     if (selectedOptions.length) {
       return (
         convertKeysToValues(selectedOptions).map((categoryValue) => { 
-            return <CategoryLabelItem category={categoryValue} />
+            return <CategoryTag category={categoryValue} />
         })
       );
     }

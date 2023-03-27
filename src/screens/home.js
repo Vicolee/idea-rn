@@ -4,7 +4,7 @@ import { StyleSheet, View, ScrollView, Image, TouchableOpacity } from 'react-nat
 import { useState } from 'react';
 import { useSelector } from 'react-redux'
 import { selectAllPosts } from '../redux-hooks/post/postSlice';
-import CategorySelectItem from '../components/CategorySelectItem';
+import CategoryItem from '../components/CategoryItem';
 import CATEGORIES from '../constants/Categories';
 import Post from '../components/Post';
 
@@ -21,7 +21,7 @@ const HomeScreen = (props) => {
       <ScrollView horizontal={true} style={styles.categoryList}>
         {CATEGORIES.map((category) => {
             return (
-              <CategorySelectItem 
+              <CategoryItem 
                 category={category}
                 onPress={onPressCategory}
                 isSelected={selectedCategory === category.key}
@@ -45,7 +45,7 @@ const HomeScreen = (props) => {
 
   const displayAllPosts = () => {
     return (
-      <ScrollView>
+      <ScrollView style={styles.postContainer}>
         {posts.map((post, idx) => {
           return (
             <Post post={post} key={idx}/>
@@ -77,6 +77,9 @@ const styles = StyleSheet.create({
   },
   categoryList: {
     margin: 10,
+  },
+  postContainer: {
+    width: '100%',
   },
   newPostButtonWrapper: {
     alignItems: 'center',

@@ -2,7 +2,6 @@ import { React, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import CATEGORIES from '../constants/Categories';
-import { MultipleSelectList } from 'react-native-dropdown-select-list';
 import { createPost, selectAllPosts } from '../redux-hooks/post/postSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Dropdown from '../components/Dropdown';
@@ -26,7 +25,15 @@ export default CreatePostScreen = (props) => {
         console.log('post title: ' + postTitle);
         console.log('post body: ' + postBody);
         // TODO: get current user signed in and set as author
-        dispatch(createPost({author: "test2@gmail.com", title: postTitle, body: postBody, categories: selectedCategories, likedBy: [], comments: []}))
+        dispatch(createPost({
+            author: "test2@gmail.com", 
+            title: postTitle, 
+            body: postBody, 
+            categories: selectedCategories, 
+            likedBy: [], 
+            comments: [], 
+            createdAt: new Date()
+        }))
         props.navigation.navigate("HomeScreen");
     }
 
@@ -73,7 +80,6 @@ export default CreatePostScreen = (props) => {
                 placeholder="What's brewing?"
                 onChangeText={(text) => {setPostBody(text)}}
                 value={postBody}
-                borderBottomWidth={1}
                 multiline={true}
                 numberOfLines={3}
                 maxLength={300}

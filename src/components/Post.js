@@ -1,18 +1,23 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import CommentButton from "./CommentButton";
 import LikeButton from "./LikeButton";
 import CATEGORIES from "../constants/Categories";
+import timeAgo from "../helpers/timeAgo";
+import { useSelector } from 'react-redux';
 
 export default Post = (props) => {
+
+    const user = useSelector((state) => state.user.all.find(user => user.email === props.post.author));
 
     const displayPostHeader = () => {
         return (
             <View>
                 <Text>{props.post.title}</Text>
                 <View>
-                    <Text>{props.post.author}</Text>
-                    {/* <Text>{props.post.timeAgo}</Text> */}
+                    <Text>{user.username}</Text>
+                    {/* TODO: Convert createdAt to timeAgo */}
+                    <Text>{timeAgo(props.post.createdAt)}</Text>
                     {displayPostCategories()}
                 </View>
             </View>
@@ -49,10 +54,22 @@ export default Post = (props) => {
     }
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
+        <View style={styles.container}>
             {displayPostHeader()}
             {displayPostBody()}
             {displayPostFooter()}
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'column',
+        borderBottomWidth: 1,
+        borderBottomColor: "#E7ECF3",
+        padding: 20,
+    },
+    postHeader: {
+        flexDirection: 'column',
+    }
+})
