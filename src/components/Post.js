@@ -5,6 +5,7 @@ import LikeButton from "./LikeButton";
 import CATEGORIES from "../constants/Categories";
 import timeAgo from "../helpers/timeAgo";
 import { useSelector } from 'react-redux';
+import CategoryTag from './CategoryTag';
 
 export default Post = (props) => {
 
@@ -13,11 +14,11 @@ export default Post = (props) => {
     const displayPostHeader = () => {
         return (
             <View>
-                <Text>{props.post.title}</Text>
-                <View>
-                    <Text>{user.username}</Text>
+                <Text style={styles.postTitle}>{props.post.title}</Text>
+                <View style={styles.postSecondHeaderContainer}>
+                    <Text style={styles.postUsername}>@{user.username}</Text>
                     {/* TODO: Convert createdAt to timeAgo */}
-                    <Text>{timeAgo(props.post.createdAt)}</Text>
+                    <Text style={styles.postTime}>{timeAgo(props.post.createdAt)}</Text>
                     {displayPostCategories()}
                 </View>
             </View>
@@ -26,11 +27,11 @@ export default Post = (props) => {
 
     const displayPostCategories = () => {
         return (
-            <View>
+            <View style={styles.postCategoryContainer}>
                 {props.post.categories.map((idx) => {
                     console.log(CATEGORIES[idx].value)
                     return (
-                        <Text>{CATEGORIES[idx].value}</Text>
+                        <CategoryTag category={CATEGORIES[idx].value}/>
                     );
                 })}
             </View>
@@ -38,17 +39,25 @@ export default Post = (props) => {
     }
     
     const displayPostBody = () => {
-        return <Text>{props.post.postBody}</Text>
+        return (
+            <View style={styles.postBody}>
+                <Text>{props.post.body}</Text>
+            </View>
+        );
     }
     
     const displayPostFooter = () => {
         return (
-            <View>
+            <View style={styles.postFooter}>
                 {/* TODO: Make LikeButton liked take user's status of liking the post */}
-                <LikeButton liked={false} />
-                <Text>{props.post.likedBy.length}</Text>
-                <CommentButton />
-                {/* <Text>{props.commentsCount}</Text> */}
+                <View style={styles.postButtonContainer}>
+                    <LikeButton liked={false} />
+                    <Text style={styles.count}>{props.post.likedBy.length}</Text>
+                </View>
+                <View style={styles.postButtonContainer} >
+                    <CommentButton />
+                    <Text style={styles.count}>{props.post.comments.length}</Text>
+                </View>
             </View>
         );
     }
@@ -71,5 +80,44 @@ const styles = StyleSheet.create({
     },
     postHeader: {
         flexDirection: 'column',
+    },
+    postSecondHeaderContainer: {
+        flexDirection: 'row',
+        marginTop: 3,
+        alignItems: 'center',
+    },
+    postTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    postUsername: {
+        marginRight: 5,
+        fontSize: 14,
+    },
+    postTime: {
+        fontSize: 14,
+        color: "#A7B0C0",
+        marginRight: 5,
+    },
+    postCategoryContainer: {
+        flexDirection: 'row',
+    },
+    postBody: {
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    postFooter: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '23%',
+    },
+    postButtonContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    count: {
+        color: "#A7B0C0",
+        marginLeft: 2,
     }
 })

@@ -2,8 +2,8 @@ import { React, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import CATEGORIES from '../constants/Categories';
-import { createPost, selectAllPosts } from '../redux-hooks/post/postSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { createPost } from '../redux-hooks/post/postSlice';
+import { useDispatch } from 'react-redux';
 import Dropdown from '../components/Dropdown';
 
 export default CreatePostScreen = (props) => {
@@ -12,7 +12,6 @@ export default CreatePostScreen = (props) => {
     const [postTitle, setPostTitle] = useState('');
     const [postBody, setPostBody] = useState('');
     const dispatch = useDispatch();
-    const allPosts = useSelector(selectAllPosts);
 
     const onPressDismiss = () => {
         console.log('clicked dismiss');

@@ -70,16 +70,15 @@ const HomeScreen = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'center',
     backgroundColor: 'white',
+    height: '100%',
   },
   categoryList: {
     margin: 10,
   },
   postContainer: {
     width: '100%',
+    height: '95%'
   },
   newPostButtonWrapper: {
     alignItems: 'center',
